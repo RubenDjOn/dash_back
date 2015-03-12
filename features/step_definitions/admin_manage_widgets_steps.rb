@@ -18,33 +18,38 @@ Given(/^I'm on the new Widget page$/) do
 end
 
 When(/^I fill all the data needed$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Name', :with => 'Test Widget'
+  click_button 'Create Widget'  
 end
 
-Then(/^I should see a message telling me the widget was added successfuly$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see "(.*?)"$/) do |message|
+  expect(page).to have_content message
 end
 
-Given(/^I'm on the widget edit page$/) do
-  pending # express the regexp above with the code you wish you had
+Given(/^There is at least one Widget$/) do
+  @widget = Widget.new(:name => 'testWidget')
+  @widget.save!
+end
+
+Given(/^I'm on the widget edit page$/) do  
+  visit edit_widget_path(@widget)
 end
 
 When(/^I modify any field on the form$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Name', :with => 'Test2Widget'
+  click_button 'Update Widget'
 end
 
-Then(/^I should see a message telling me the widget was succesfully modified$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I delete a Widget$/) do
+  page.driver.submit :delete, "/widgets/#{@widget.id}", {}
 end
 
-Given(/^I'm on the Widget list$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I fill the config field with a valid JSON$/) do
+  fill_in 'Config', :with => '{test: 1, name: jajaja}'
+  click_button 'Update Widget'
 end
 
-When(/^I press delete button of a Widget$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see a message telling me the widget was successfuly deleted$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I fill the config field with an invalid JSON$/) do
+  fill_in 'Config', :with => 'sdfsdfas'
+  click_button 'Update Widget'
 end

@@ -10,15 +10,27 @@ Feature: Admin Manage Widgets
 	Scenario: Add new Widget
 		Given I'm on the new Widget page
 		When I fill all the data needed
-		Then I should see a message telling me the widget was added successfuly
+		Then I should see "Widget was successfully created."
 
 	Scenario: Modify Widget
-		Given I'm on the widget edit page
+		Given There is at least one Widget		
+		And I'm on the widget edit page
 		When I modify any field on the form
-		Then I should see a message telling me the widget was succesfully modified
+		Then I should see "Widget was successfully modified."
 
 	Scenario: Delete Widget
-		Given I'm on the Widget list
-		When I press delete button of a Widget
-		Then I should see a message telling me the widget was successfuly deleted
+		Given There is at least one Widget		
+		When I delete a Widget
+		Then I should see "Widget was successfully deleted."
 
+	Scenario: Fill config field with a valid JSON
+		Given There is at least one Widget
+		And I'm on the widget edit page
+		When I fill the config field with a valid JSON
+		Then I should see "Widget was successfully modified."
+
+	Scenario: Fill config field with an invalid JSON
+		Given There is at least one Widget
+		And I'm on the widget edit page
+		When I fill the config field with an invalid JSON
+		Then I should see "Invalid JSON."

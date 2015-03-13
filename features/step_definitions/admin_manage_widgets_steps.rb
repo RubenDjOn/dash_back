@@ -49,7 +49,7 @@ When(/^I fill the config field with a valid JSON$/) do
   click_button 'Update Widget'
 end
 
-When(/^I fill the config field with an invalid JSON$/) do
-  fill_in 'Config', :with => 'sdfsdfas'
-  click_button 'Update Widget'
-end
+# When(/^I fill the config field with an invalid JSON$/) do
+#   fill_in 'Config', :with => 'sdfsdfas'
+#   click_button 'Update Widget'
+# end

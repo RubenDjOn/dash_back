@@ -45,11 +45,11 @@ When(/^I delete a Widget$/) do
 end
 
 When(/^I fill the config field with a valid JSON$/) do
-  fill_in 'Config', :with => '{test: 1, name: jajaja}'
+  fill_in 'Config', :with => '{"test": 1, "name": "jajaja"}'
   click_button 'Update Widget'
 end
 
-# When(/^I fill the config field with an invalid JSON$/) do
-#   fill_in 'Config', :with => 'sdfsdfas'
-#   click_button 'Update Widget'
-# end
+When(/^I fill the config field with an invalid JSON$/) do
+  fill_in 'Config', :with => 'sdfsdfas'
+  click_button 'Update Widget'
+end

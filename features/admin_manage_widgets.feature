@@ -29,8 +29,8 @@ Feature: Admin Manage Widgets
 		When I fill the config field with a valid JSON
 		Then I should see "Widget was successfully modified."
 
-	# Scenario: Fill config field with an invalid JSON
-	# 	Given There is at least one Widget
-	# 	And I'm on the widget edit page
-	# 	When I fill the config field with an invalid JSON
-	# 	Then I should see "Invalid JSON."
+	Scenario: Fill config field with an invalid JSON
+		Given There is at least one Widget
+		And I'm on the widget edit page
+		When I fill the config field with an invalid JSON
+		Then I should see "Invalid JSON."

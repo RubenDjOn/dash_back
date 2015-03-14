@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'user_widgets/edit'
+
+  get 'user_widgets/update'
+
+  get 'user_widgets/destroy'
+
   get 'widgets/new'
 
   get 'widgets/create'
@@ -21,7 +27,13 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-    resources :widgets
+    resources :widgets do
+      member do
+        get 'subscribe'
+        get 'unsubscribe'        
+      end
+    end
+    resources :user_widgets
 
   # Example resource route with options:
   #   resources :products do

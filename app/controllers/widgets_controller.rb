@@ -1,5 +1,5 @@
 class WidgetsController < ApplicationController
-  before_action :set_widget, only: [:show, :edit, :update, :destroy]  
+  before_action :set_widget, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]  
 
   def index
   end
@@ -41,6 +41,20 @@ class WidgetsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to widgets_path, notice: 'Widget was successfully deleted.' }        
       end
+  end
+
+  def subscribe
+    current_user.widgets << @widget    
+    respond_to do |format|
+        format.json {render json: {message: 'Subscribed successfully'}}
+    end
+  end
+
+  def unsubscribe
+    current_user.widgets.destroy(@widget)
+    respond_to do |format|
+        format.json {render json: {message: 'Unsubscribed successfully'}}
+    end
   end
 
   private
